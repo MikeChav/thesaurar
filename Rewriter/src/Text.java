@@ -1,6 +1,8 @@
 import java.util.LinkedList;
 
 import edu.mit.jwi.IDictionary;
+import edu.mit.jwi.item.IWord;
+import edu.mit.jwi.item.POS;
 import edu.mit.jwi.item.Pointer;
 
 
@@ -48,9 +50,22 @@ public class Text {
 		
 	}
 	
-	public void rewriteText(){
+	public String rewriteText(boolean longest, Pointer noun, Pointer verb,  Pointer adjective, Pointer adverb, int level){
+		String newString = "";
 		for(Word word : breakup){
-			System.out.print(word.getWordReplacement(true, Pointer.HYPERNYM, 0));
+			
+			if(word.getPOS() == POS.NOUN){
+				newString = newString + word.getWordReplacement(longest, noun, level);
+			}else if(word.getPOS() == POS.VERB){
+				newString = newString + word.getWordReplacement(longest, verb, level);
+			}else if(word.getPOS() == POS.ADJECTIVE){
+				newString = newString + word.getWordReplacement(longest, adjective, level);
+			}else if(word.getPOS() == POS.ADVERB){
+				newString = newString + word.getWordReplacement(longest, adverb, level);
+			}else{
+				newString = newString + word.rawWord;
+			}
 		}
+		return newString;
 	}
 }

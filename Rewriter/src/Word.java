@@ -23,14 +23,18 @@ public class Word {
 		this.rawWord = rawWord;
 		this.dict = dict;
 		word = getWord(dict, rawWord);
+		
+		
 		//if(word != null) System.out.println(word.getLemma());
+		/*
 		if(word != null){
 			System.out.println("Hyponeyms of " + word.getLemma());
 			ISynset s = getSynset();
-			for(ISynset relatedSet : getRelatedSynsets(s, Pointer.HYPERNYM)){
+			for(ISynset relatedSet : getRelatedSynsets(s, Pointer.HYPERNYM, 0, 2)){
 				System.out.println(relatedSet.toString());
 			}
 		}
+		*/
 	}
 	
 	
@@ -58,11 +62,18 @@ public class Word {
 		return word.getSynset();
 	}
 	
-	public List<ISynset> getRelatedSynsets(ISynset synset, Pointer p){
+	public List<ISynset> getRelatedSynsets(ISynset synset, Pointer p, int level, int maxlevel){
 		List<ISynsetID> relatedSetsIDs = synset.getRelatedSynsets(p);
 		List<ISynset> relatedSets = new LinkedList<ISynset>();
 		 for(ISynsetID s : relatedSetsIDs){
-			 relatedSets.add(dict.getSynset(s));
+			 ISynset set = dict.getSynset(s);
+			 relatedSets.add(set);
+			 if(level < maxlevel){
+				 List<ISynset> nextLevel = getRelatedSynsets(set, p, level+1, maxlevel);
+				 for(ISynset nextLevelMerge : nextLevel){
+					 relatedSets.add(nextLevelMerge);
+				 }
+			 }
 		 }
 		
 		return relatedSets;
@@ -99,7 +110,8 @@ public class Word {
 		if(relationship == null){
 			sets.add(s);
 		}else{
-			sets = getRelatedSynsets(s, relationship);
+			sets = getRelatedSynsets(s, relationship, 0, level);
+			
 		}
 		
 		
@@ -111,28 +123,14 @@ public class Word {
 	}
 	
 	
+	public POS getPOS(){
+		if(word == null) return null;
+		return word.getPOS();
+	}
 	public void print(){
 		System.out.println(rawWord);
 	}
-	
-	
-	
-	
-	public String longestSynonym(){
-		if(word == null) return rawWord;
-		ISynset s = getSynset();
-		String longestSynonym = word.getLemma();
-		
-		if(s != null){
-			for(IWord w : s.getWords()){
-				if(longestSynonym.length() < w.getLemma().length()){
-					longestSynonym =  w.getLemma();
-				}
-			}
-		}
-		return longestSynonym.replace("_", " ");
 
-	}
 	
 	
 }

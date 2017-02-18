@@ -3,6 +3,7 @@ import java.net.URL;
 
 import edu.mit.jwi.Dictionary;
 import edu.mit.jwi.IDictionary;
+import edu.mit.jwi.item.Pointer;
 
 
 public class Rewriter {
@@ -23,10 +24,11 @@ public class Rewriter {
 	 */
 	public static void main(String[] args) throws IOException {
 		IDictionary dict  = getDictionary();
-		Word w = new Word(dict, "red");
-		System.out.println(w.longestSynonym());
 		Text t = new Text(dict, "Membership lists reviewed by The New York Times show that the club’s nearly 500 paying members include dozens of real estate developers, Wall Street financiers, energy executives and others whose businesses could be affected by Mr. Trump’s policies. At least three club members are under consideration for an ambassadorship. Most of the 500 have had memberships predating Mr. Trump’s presidential campaign, and there are a limited number of memberships still available.");
-		t.rewriteText();
+		
+		//rewriteText(longest or shortest, Noun, Verb, Adjective, Adverb, level) either enter a pointer relationship or leave null for synonyms
+		//not all pointer relationships are applicable, but it wont cause an error.
+		System.out.println(t.rewriteText( true, null, Pointer.ANTONYM, Pointer.SIMILAR_TO, Pointer.HYPONYM, 2));
 	}
 
 
