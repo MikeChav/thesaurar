@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html>
+
+<head>
+</head>
+
+<body>
+    <textarea rows=7 cols="40" id="source" placeholder="Type text here..."></textarea> <br/>
+    <input type="button" id ="submit" value="Submit" /> <br/>
+    <div style="visibility: hidden;">
+      <label for="target">Your result! </label><br/><textarea disabled="disabled" rows=9 cols="40" id="target"></textarea>
+    </div>
+
+</body>
+
+<script src="jquery-3.1.1.js"></script>
+<script>
+    $(document).ready(function() {
+
+        $("input#submit").click(function() {
+            $.ajax({
+                method: "GET",
+                url: "/convert",
+//                data: { text: "test"}
+                data: { text: $("textarea#source").val() },
+//                dataType: "text"
+            })
+            .done(function(response) {
+//                alert(response);
+                $("textarea#target").val(response);
+                $("div").css("visibility", "visible")
+
+            })
+            .fail(function(xhr, error){
+                alert("Whoops, error "+error.status+" occurred");
+            });
+        });
+    });
+
+
+
+</script>
+
+</html>
