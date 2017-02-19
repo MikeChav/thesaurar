@@ -23,7 +23,7 @@ public class Word {
 		this.rawWord = rawWord;
 		this.dict = dict;
 		word = getWord(dict, rawWord);
-		
+		if(rawWord.length() <= 2) word = null;
 		
 		//if(word != null) System.out.println(word.getLemma());
 		/*

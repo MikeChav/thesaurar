@@ -15,7 +15,15 @@ public class Main {
     public static void main(String[] args) {
         staticFileLocation("/static");
         get("/", (req, res) -> (new Main()).renderContent());
-        get("/convert", "application/json", (request, response)-> Rewriter.convert(request.queryParams("text")));
+        get("/convert", "application/json", (request, response)-> Rewriter.convert(
+                request.queryParams("text"),
+                request.queryParams("length"),
+                request.queryParams("noun"),
+                request.queryParams("verb"),
+                request.queryParams("adjective"),
+                request.queryParams("adverb"),
+                request.queryParams("depth")
+        ));
     }
 
 
