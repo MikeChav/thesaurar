@@ -55,13 +55,13 @@ public class Text {
 		for(Word word : breakup){
 			
 			if(word.getPOS() == POS.NOUN){
-				newString = newString + word.getWordReplacement(longest, noun, level);
+				newString = newString +" "+word.getWordReplacement(longest, noun, level);
 			}else if(word.getPOS() == POS.VERB){
-				newString = newString + word.getWordReplacement(longest, verb, level);
+				newString = newString +" "+ word.getWordReplacement(longest, verb, level);
 			}else if(word.getPOS() == POS.ADJECTIVE){
-				newString = newString + word.getWordReplacement(longest, adjective, level);
+				newString = newString +" "+ word.getWordReplacement(longest, adjective, level);
 			}else if(word.getPOS() == POS.ADVERB){
-				newString = newString + word.getWordReplacement(longest, adverb, level);
+				newString = newString +" "+ word.getWordReplacement(longest, adverb, level);
 			}else{
 				newString = newString + word.rawWord;
 			}
