@@ -28,7 +28,7 @@ public class Rewriter {
 		
 		//rewriteText(longest or shortest, Noun, Verb, Adjective, Adverb, level) either enter a pointer relationship or leave null for synonyms
 		//not all pointer relationships are applicable, but it wont cause an error.
-		System.out.println(t.rewriteText( true, Pointer.HYPERNYM, Pointer.ANTONYM, Pointer.SIMILAR_TO, Pointer.HYPONYM, 3));
+		System.out.println(t.rewriteText( true, Pointer.HYPERNYM, Pointer.ANTONYM, Pointer.SIMILAR_TO, Pointer.HYPONYM, 0));
 	}
 
 

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;RhymeTree&apos; to &apos;RhymeTreeNode&apos;&#x0A;- Original project: &apos;Rewriter&apos;&#x0A;- Original element: &apos;RhymeTree&apos;&#x0A;- Renamed element: &apos;RhymeTreeNode&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;RhymeTree&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{RhymeTree.java[RhymeTree" matchStrategy="1" name="RhymeTreeNode" qualified="false" references="true" similarDeclarations="false" stamp="1487454879534" textual="false" version="1.0"/>
+</session>

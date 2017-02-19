@@ -23,9 +23,7 @@ public class Word {
 		this.rawWord = rawWord;
 		this.dict = dict;
 		word = getWord(dict, rawWord);
-		
-		//fixes 's problem where s gets removed
-		if(rawWord.equals("s")) word = null;
+		if(rawWord == "s") word = null;
 		
 		//if(word != null) System.out.println(word.getLemma());
 		/*

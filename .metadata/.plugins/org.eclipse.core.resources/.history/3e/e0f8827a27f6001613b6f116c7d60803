@@ -24,8 +24,6 @@ public class Word {
 		this.dict = dict;
 		word = getWord(dict, rawWord);
 		
-		//fixes 's problem where s gets removed
-		if(rawWord.equals("s")) word = null;
 		
 		//if(word != null) System.out.println(word.getLemma());
 		/*

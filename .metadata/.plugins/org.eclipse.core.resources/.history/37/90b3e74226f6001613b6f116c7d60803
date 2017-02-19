@@ -24,8 +24,6 @@ public class Word {
 		this.dict = dict;
 		word = getWord(dict, rawWord);
 		
-		//fixes 's problem where s gets removed
-		if(rawWord.equals("s")) word = null;
 		
 		//if(word != null) System.out.println(word.getLemma());
 		/*
@@ -64,7 +62,6 @@ public class Word {
 		return word.getSynset();
 	}
 	
-	//recursively gets related synsets related to synset by relationship p
 	public List<ISynset> getRelatedSynsets(ISynset synset, Pointer p, int level, int maxlevel){
 		List<ISynsetID> relatedSetsIDs = synset.getRelatedSynsets(p);
 		List<ISynset> relatedSets = new LinkedList<ISynset>();
