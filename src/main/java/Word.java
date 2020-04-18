@@ -24,7 +24,6 @@ public class Word {
 		this.dict = dict;
 		word = getWord(dict, rawWord);
 		if(rawWord.length() <= 2) word = null;
-		
 		//if(word != null) System.out.println(word.getLemma());
 		/*
 		if(word != null){
@@ -62,6 +61,10 @@ public class Word {
 		return word.getSynset();
 	}
 	
+<<<<<<< HEAD:src/main/java/Word.java
+=======
+	//recursively gets related synsets related to synset by relationship p
+>>>>>>> master:Rewriter/src/Word.java
 	public List<ISynset> getRelatedSynsets(ISynset synset, Pointer p, int level, int maxlevel){
 		List<ISynsetID> relatedSetsIDs = synset.getRelatedSynsets(p);
 		List<ISynset> relatedSets = new LinkedList<ISynset>();
