@@ -1,0 +1,125 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Making Reading Even Harder!</title>
+    <style>
+        body {
+            background: url("background.jpg");
+            background-size: cover;
+            width: 99%;
+        }
+
+        h1 {
+            color: LightCyan;
+            font-weight: bolder;
+            font-size: 4em;
+        }
+
+        input#submit {
+            font-size: 1.3em;
+        }
+
+        .form-group.col-md-6.col-sm-10 {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="form-group col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+            <h1 class="text-center">Thesaurawr</h1><br/>
+            <textarea rows=7 cols="40" id="source" placeholder="Type text here..." class="form-control"></textarea> <br/>
+            Word Length:
+            <select id="length" class="form-group">
+                <option value="long">long</option>
+                <option value="short">short</option>
+            </select>
+            Nouns:
+            <select id="noun" class="form-group">
+                <option value="Synonym">Synonym</option>
+                <option value="Hypernym">Hypernym</option>
+                <option value="Hyponym">Hyponym</option>
+                <option value="Antonym">Antonym</option>
+                <option value="Similar to">Similar to</option>
+            </select>
+            Verbs:
+            <select id="verb" class="form-group">
+                <option value="Synonym">Synonym</option>
+                <option value="Hypernym">Hypernym</option>
+                <option value="Hyponym">Hyponym</option>
+                <option value="Antonym">Antonym</option>
+                <option value="Entailment">Entailment</option>
+                <option value="Similar to">Similar to</option>
+            </select>
+            Adjectives:
+            <select id="adjective" class="form-group">
+                <option value="Synonym">Synonym</option>
+                <option value="Hypernym">Hypernym</option>
+                <option value="Antonym">Antonym</option>
+                <option value="Hyponym">Hyponym</option>
+                <option value="Similar to">Similar to</option>
+            </select>
+            Adverbs:
+            <select id="adverb" class="form-group">
+                <option value="Synonym">Synonym</option>
+                <option value="Hypernym">Hypernym</option>
+                <option value="Antonym">Antonym</option>
+                <option value="Hyponym">Hyponym</option>
+                <option value="Similar to">Similar to</option>
+            </select>
+            Depth:
+            <select id="depth" class="form-group">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+
+            </select>
+            <input type="button" id ="submit" value="Submit" class="form-control" /> <br/>
+            <span style="visibility: hidden;">
+                <textarea disabled="disabled" rows=9 cols="40" id="target" class="form-control"></textarea>
+            </span>
+        </div>
+    </div>
+
+</body>
+
+<script src="jquery-3.1.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function() {
+
+        $("input#submit").click(function() {
+            $.ajax({
+                method: "GET",
+                url: "/convert",
+                data: { text: $("textarea#source").val(),
+                    length: $("select#length").val(),
+                    noun: $("select#noun").val(),
+                    verb: $("select#verb").val(),
+                    adjective: $("select#adjective").val(),
+                    adverb: $("select#adverb").val(),
+                    depth: $("select#depth").val(),
+                },
+            })
+            .done(function(response) {
+                $("textarea#target").val(response);
+                $("span").css("visibility", "visible")
+
+            })
+            .fail(function(xhr, error){
+                alert("Whoops, error "+error.status+" occurred");
+            });
+        });
+    });
+
+
+
+</script>
+
+</html>
